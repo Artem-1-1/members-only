@@ -2,12 +2,16 @@ import Router from "express";
 
 const router = Router();
 
-router.get('/register', (req, res) => {
-  res.json({message : "This register page"})
+router.route("/").get((req, res) => {
+  res.render("index", { title: "Homepage" });
 });
 
-router.get('/login', (req, res) => {
-  res.json({message : "This login page"})
+router.route("/register").get((req, res) => {
+  res.render("register", {title : "Register"})
+});
+
+router.route("/login").get((req, res) => {
+  res.render("login", {title : "Log in"})
 });
 
 export default router;
