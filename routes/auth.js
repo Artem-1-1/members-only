@@ -1,10 +1,6 @@
-import Router from "express";
+import { Router } from "express";
 
 const router = Router();
-
-router.route("/").get((req, res) => {
-  res.render("index", { title: "Homepage" });
-});
 
 router.route("/register").get((req, res) => {
   res.render("register", {title : "Register"})

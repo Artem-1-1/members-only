@@ -3,28 +3,35 @@
 <body>
   <%- include("./partials/nav.ejs") %>
   <main class="page-content">
-    <h1 class="page-title">Register</h1>
-    <form action="/register" method="POST">
+    <form class="form" action="/register" method="POST">
+      <h2 class="form-title">Register a new account</h1>
       <div class="formRow">
-        <div class="rowLabel">
+        <div class="rowLabel reg">
+        <label for="email">Full name</label>
+        <p>Required</p>
+        </div>
+        <input id="fullname" name="fullname" type="text" minlength="6" maxlength="50" placeholder="Full name">
+      </div>
+      <div class="formRow">
+        <div class="rowLabel reg">
         <label for="username">Username</label>
         <p>Required</p>
         </div>
         <input id="username" name="username" type="text" placeholder="Username">
       </div>
       <div class="formRow">
-        <div class="rowLabel">
-        <label for="email">Email</label>
-        <p>Required</p>
-        </div>
-        <input id="email" name="email" type="email" placeholder="Email">
-      </div>
-      <div class="formRow">
-        <div class="rowLabel">
+        <div class="rowLabel reg">
         <label for="password">Password</label>
         <p>Required</p>
         </div>
         <input id="password" name="password" type="password" placeholder="Password">
+      </div>
+      <div class="formRow">
+        <div class="rowLabel reg">
+        <label for="password">Confirm Password</label>
+        <p>Required</p>
+        </div>
+        <input id="conf_password" name="conf_password" type="password" placeholder="Confirm Password">
       </div>
       <button class="regBtn" type="submit">Register</button>
     </form>
