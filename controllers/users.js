@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import db from '../db/queries.js';
+import passport from "passport";
 
 export async function registerPOST(req, res, next) {
   const { fullname, username, password } = req.body;
@@ -13,4 +14,9 @@ export async function registerPOST(req, res, next) {
   }
 }
 
-export default { registerPOST };
+export const loginPOST = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/auth/login",
+});
+
+export default { registerPOST, loginPOST };

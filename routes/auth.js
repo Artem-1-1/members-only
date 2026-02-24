@@ -4,13 +4,22 @@ import users from "../controllers/users.js";
 const router = Router();
 
 router.route("/register").get((req, res) => {
-  res.render("register", {title : "Register"})
+  res.render("register", {title : "Members Only | Register"})
 });
 
 router.route("/login").get((req, res) => {
-  res.render("login", {title : "Log in"})
+  res.render("login", {title :"Members Only | Log in"})
 });
 
 router.post("/register", users.registerPOST);
+router.post("/login", users.loginPOST);
+
+router.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    res.clearCookie('connect.sid');
+    res.redirect("/");
+  });
+});
 
 export default router;

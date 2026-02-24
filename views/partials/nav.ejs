@@ -1,8 +1,16 @@
 <nav class="navbar">
   <div class="nav-container">
+    <div class="site-title">
+      <h2>Members Only</h2>
+    </div>
     <ul class="nav-links">
+      <% if (locals.currentUser) { %>
+        <li class="nav-item"><span class="user"><%= currentUser.username %></span></li>
+        <li class="nav-item"><a href="/auth/logout">Log Out</a></li>
+      <% } else { %>
         <li class="nav-item"><a href="/auth/login">Log in</a></li>
         <li class="nav-item"><a href="/auth/register">Register</a></li>
+      <% } %>
     </ul>
   </div>
 </nav>

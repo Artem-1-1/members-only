@@ -3,7 +3,14 @@
 <body>
   <%- include("./partials/nav.ejs") %>
   <main class="page-content">
-    <h1 class="page-title">Welcome</h1>
+    <% if (locals.currentUser) { %>
+        <h1 class="page-title">Welcome back <%= currentUser.username %></h1>
+      <% } else { %>
+        <h1 class="page-title">Welcome Newcomer</h1>
+        <div class="notification">
+          <p>To create post, you need <a href="/auth/login">Login</a> first.</p>
+        </div>
+      <% } %>
   </main>
 </body>
 </html>
