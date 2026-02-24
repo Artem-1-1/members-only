@@ -5,6 +5,7 @@
   <main class="page-content">
     <% if (locals.currentUser) { %>
         <h1 class="page-title">Welcome back <%= currentUser.username %></h1>
+        <a class="newBtn" href="/new-post">New Post</a>
       <% } else { %>
         <h1 class="page-title">Welcome Newcomer</h1>
         <div class="notification">
