@@ -23,4 +23,31 @@ async function getUserByUsername(username) {
   return rows[0];
 }
 
-export default { createUser, getUserFromId, getUserByUsername };
+async function getAllPosts() {
+  const { rows } = await pool.query(`
+    SELECT posts.id,
+    COALESCE(users.fullname, 'Anonymous') AS full_name,
+    users.username,
+    posts.title,
+    posts.content,
+    posts.date
+  FROM posts
+  LEFT JOIN users ON users.id = posts.user_id
+  ORDER BY posts.date DESC;`)
+  return rows;
+}
+
+async function createPost(title, content, userId) {
+  await pool.query(`
+    INSERT INTO posts (title, content, user_id)
+    VALUES ($1, $2, $3);
+    `, [title, content, userId])
+}
+
+async function deletePost(id) {
+  await pool.query(`
+    DELETE FROM posts WHERE id = $1;
+    `, [id])
+}
+
+export default { createUser, getUserFromId, getUserByUsername, getAllPosts, createPost, deletePost };

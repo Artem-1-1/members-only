@@ -1,13 +1,14 @@
 import { Router } from "express";
+import index from "../controllers/index.js";
+import posts from "../controllers/posts.js";
+import { signupValidation, postValidation } from "../middlewares/validation.js";
 
 const router = Router();
 
-router.route("/").get((req, res) => {
-  res.render("index", { title: "Members Only" });
-});
+router.get("/", index.homepage)
 
-router.route("/new-post").get((req, res) => {
-  res.render("new-post", { title: "Members Only | New Post" });
-});
+router.get("/new-post", posts.createPostGET)
+
+router.post("/new-post", postValidation,  posts.createPostPOST) 
 
 export default router;

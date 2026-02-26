@@ -195,3 +195,27 @@ textarea {
   box-shadow: 0 0 0 3px rgba(125, 140, 196, 0.4);
 }
 
+.posts {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+}
+
+.post {
+  border: 1px solid #5A67D8;
+  padding: 1rem;
+  border-radius: 0.7rem;
+}
+
+.post .header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-info img {
+  width: 45px;
+  object-fit: cover;
+}
+

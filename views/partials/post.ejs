@@ -1,0 +1,33 @@
+<% const isMember = !user ? 
+    false : user.member_status === "registered" ? 
+    false : true;
+
+    const fullname = isMember ? post.full_name : "Unknown Full Name";
+    const username = isMember ? post.username : "Unknown Username";%>
+
+<div class="posts">
+  <div class="header flex">
+    <div class="user-info flex">
+      <img src="/assets/user.png" alt="user icon">
+        <div>
+          <p class="user-fullname"><%= fullname %></p>
+          <div class="username_date">
+            <span>@<%= username %></span>
+              • 
+            <span><%= post.date %></span>
+          </div>
+        </div>
+      </div>
+
+        <% if (user && user.member_status === "admin") { %>
+            <button class="delete-post" data-post-id="<%= post.id %>">
+                Delete
+            </button>
+        <% } %>
+    </div>
+
+    <h3 class="title"><%= post.title %></h3>
+    <div class="content">
+        <p><%= post.content %></p>
+    </div>
+</div>
