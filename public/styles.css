@@ -88,6 +88,7 @@ body {
   color: #898989
 }
 
+.delete-post,
 .newBtn,
 .logBtn,
 .regBtn {
@@ -214,8 +215,14 @@ textarea {
   margin-bottom: 10px;
 }
 
-.user-info img {
+.img {
   width: 45px;
   object-fit: cover;
+}
+
+.site-title {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
