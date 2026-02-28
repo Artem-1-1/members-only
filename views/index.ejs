@@ -7,7 +7,7 @@
         <h1 class="page-title">Welcome back <%= currentUser.username %></h1>
         <a class="newBtn" href="/new-post">New Post</a>
         <div class="notification">
-          <p>To view Usernames and Full Names you must <a href="/join">Join</a> in to the community</p>
+          <p>To view Usernames and Full Names you must <a class="join" href="#">Join</a> in to the community</p>
         </div>
       <% } else { %>
         <h1 class="page-title">Welcome Newcomer</h1>
@@ -15,10 +15,14 @@
           <p>To create post, you need <a href="/auth/login">Login</a> first.</p>
         </div>
       <% } %>
-      <div class="post">
+        <% if (posts.length === 0) { %>
+          <p>There are no posts at the moment.</p>
+        <% } else { %>
+        <div class="posts">
         <% posts.forEach(function(post) { %>
-            <%- include('./partials/post', { post: post, user: currentUser }) %>
+          <%- include('./partials/post', { post: post, user: currentUser }) %>
         <% }); %>
+      <% } %>
     </div>
   </main>
 </body>

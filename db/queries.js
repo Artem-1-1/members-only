@@ -47,7 +47,15 @@ async function createPost(title, content, userId) {
 async function deletePost(id) {
   await pool.query(`
     DELETE FROM posts WHERE id = $1;
-    `, [id])
+    `, [id]);
 }
 
-export default { createUser, getUserFromId, getUserByUsername, getAllPosts, createPost, deletePost };
+async function giveUserMembership(id) {
+  await pool.query(`
+    UPDATE users
+    SET member_status = 'member'
+    WHERE id = $1;`
+  , [id]);
+}
+
+export default { createUser, getUserFromId, getUserByUsername, getAllPosts, createPost, deletePost, giveUserMembership };

@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import db from '../db/queries.js';
 import passport from "passport";
 
-export async function registerPOST(req, res, next) {
+async function registerPOST(req, res, next) {
   const { fullname, username, password } = req.body;
   try {
     const hashedPass = await bcrypt.hash(password, 10);
@@ -14,9 +14,18 @@ export async function registerPOST(req, res, next) {
   }
 }
 
-export const loginPOST = passport.authenticate("local", {
+const loginPOST = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/auth/login",
 });
 
-export default { registerPOST, loginPOST };
+async function join(req, res, next) {
+  try {
+    await db.giveUserMembership(req.user.id);
+    res.redirect("/")
+  } catch(err) {
+    next(err)
+  }
+}
+
+export default { registerPOST, loginPOST, join };

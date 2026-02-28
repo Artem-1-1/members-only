@@ -1,4 +1,4 @@
-import { UnauthorizedError } from "./error";
+import UnauthorizedError  from "./error.js";
 
 export function isAuth(req, res, next) {
     if (req.isAuthenticated()) {
@@ -15,3 +15,5 @@ export function isAdmin(req, res, next) {
         next(new UnauthorizedError());
     }
 }
+
+export default { isAuth, isAdmin };
